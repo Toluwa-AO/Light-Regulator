@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "629185916557",
+    "firebase_url": "https://lightregulat-default-rtdb.firebaseio.com",
+    "project_id": "lightregulat",
+    "storage_bucket": "lightregulat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629185916557:android:475e5373aefe15838f3cc4",
+        "android_client_info": {
+          "package_name": "com.example.light_regulator_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6tgDtlHBCc-uzFgAFEartGKNV6oH42us"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
