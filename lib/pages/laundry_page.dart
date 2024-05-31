@@ -1,14 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:light_regulator_app/components/toggle_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LaundryRoomPage extends StatelessWidget {
-  const LaundryRoomPage({super.key});
+class LaundryRoomPage extends StatefulWidget {
+   LaundryRoomPage({super.key});
+  @override
+  State<LaundryRoomPage> createState() => LaundryRoomPageState();
+}
 
+class LaundryRoomPageState extends State<LaundryRoomPage> {
+  late SharedPreferences _prefs;
+  int _activeButtonIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _initSharedPreferences();
+  }
+
+  Future<void> _initSharedPreferences() async {
+    _prefs = await SharedPreferences.getInstance();
+    // Retrieve the selected index from shared preferences
+    _activeButtonIndex = _prefs.getInt('activeButtonIndex') ?? 0;
+    setState(() {}); // Refresh the UI
+  }
+
+  Future<void> _setActiveButtonIndex(int index) async {
+    // Save the selected index to shared preferences
+    await _prefs.setInt('activeButtonIndex', index);
+    setState(() {
+      _activeButtonIndex = index;
+    });
+  }
+
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
+     return  Scaffold(
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
         ),
         body:SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
           padding: EdgeInsets.fromLTRB(8, 10, 8, 0),
           width: MediaQuery.of(context).size.width,
@@ -17,7 +49,7 @@ class LaundryRoomPage extends StatelessWidget {
           children: [
             Container(
               width: 359,
-              height: 240,
+              height: 180,
               decoration: BoxDecoration(
                image: DecorationImage(
                         image:  AssetImage('assets/laundry.png'),
@@ -42,7 +74,7 @@ class LaundryRoomPage extends StatelessWidget {
                 Text('Select Light Condidtion', style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Colors.black
                 ),),
               ],
             ),
@@ -50,124 +82,86 @@ class LaundryRoomPage extends StatelessWidget {
               height: 10,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                 GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),
-                                
-                                 ),
-                 ),
-              GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                               
-                                 ),
-                 ),
+              CircularToggleButton(
+              text: 'Normal Mode',
+              index: 0,
+              isActive: _activeButtonIndex == 0,
+              onPressed: () {
+                setState(() {
+                  _activeButtonIndex = 0;
+                });
+              },
+            ),
+            CircularToggleButton(
+              text: 'Reading Mode',
+              index: 0,
+              isActive: _activeButtonIndex == 1,
+              onPressed: () {
+                setState(() {
+                  _activeButtonIndex = 1;
+                });
+              },
+            ),
               ],
             ),
-            SizedBox(height: 20,),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                 GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                                
-                                 ),
-                 ), 
-                GestureDetector(
-                  onTap: (){
-                  },
-                   child: Container(
-                    width: 359/2,
-                    height:120,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                               
-                                 ),
-                 ),
+              CircularToggleButton(
+              text: 'Saving Mode',
+              index: 0,
+              isActive: _activeButtonIndex == 2,
+              onPressed: () {
+                setState(() {
+                  _activeButtonIndex = 2;
+                });
+              },
+            ),
+            CircularToggleButton(
+              text: 'Workout Mode',
+              index: 0,
+              isActive: _activeButtonIndex == 3,
+              onPressed: () {
+                setState(() {
+                  _activeButtonIndex = 3;
+                });
+              },
+            ),
               ],
             ),
-            SizedBox(height: 20,),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                 GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),
-                                
-                                 ),
-                 ),
-              GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                               
-                                 ),
-                 ),
-              ],
+              CircularToggleButton(
+              text: 'Saving Mode',
+              index: 0,
+              isActive: _activeButtonIndex == 4,
+              onPressed: () {
+                setState(() {
+                  _activeButtonIndex = 4;
+                });
+              },
+            ),
+            CircularToggleButton(
+              text: 'Cinema Mode',
+              index: 0,
+              isActive: _activeButtonIndex == 5,
+              onPressed: () {
+                setState(() {
+                  _activeButtonIndex = 5;
+                });
+              },
+            ),
+            SizedBox(height: 20,),
+              ],  
             ),
           ],
         ),),
-      ),);
+      ),
+    );
   }
 }

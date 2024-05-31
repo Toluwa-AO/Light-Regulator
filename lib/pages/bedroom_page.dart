@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:light_regulator_app/components/toggle.dart';
+import 'package:light_regulator_app/components/toggle_button.dart';
 
-class BedroomPage extends StatelessWidget {
+class BedroomPage extends StatefulWidget {
   const BedroomPage({super.key});
+
+  @override
+  State<BedroomPage> createState() => _BedroomPageState();
+}
+
+  
+
+class _BedroomPageState extends State<BedroomPage> {
+  int activeButtonIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +20,7 @@ class BedroomPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         ),
         body:SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
           padding: EdgeInsets.fromLTRB(8, 10, 8, 0),
           width: MediaQuery.of(context).size.width,
@@ -19,7 +29,7 @@ class BedroomPage extends StatelessWidget {
           children: [
             Container(
               width: 359,
-              height: 240,
+              height: 180,
               decoration: BoxDecoration(
                image: DecorationImage(
                         image:  AssetImage('assets/bedroom.png'),
@@ -44,7 +54,7 @@ class BedroomPage extends StatelessWidget {
                 Text('Select Light Condidtion', style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Colors.black
                 ),),
               ],
             ),
@@ -52,10 +62,82 @@ class BedroomPage extends StatelessWidget {
               height: 10,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ToggleGridPage(),
+              CircularToggleButton(
+              text: 'Normal Mode',
+              index: 0,
+              isActive: activeButtonIndex == 0,
+              onPressed: () {
+                setState(() {
+                  activeButtonIndex = 0;
+                });
+              },
+            ),
+            CircularToggleButton(
+              text: 'Reading Mode',
+              index: 0,
+              isActive: activeButtonIndex == 1,
+              onPressed: () {
+                setState(() {
+                  activeButtonIndex = 1;
+                });
+              },
+            ),
               ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              CircularToggleButton(
+              text: 'Saving Mode',
+              index: 0,
+              isActive: activeButtonIndex == 2,
+              onPressed: () {
+                setState(() {
+                  activeButtonIndex = 2;
+                });
+              },
+            ),
+            CircularToggleButton(
+              text: 'Workout Mode',
+              index: 0,
+              isActive: activeButtonIndex == 3,
+              onPressed: () {
+                setState(() {
+                  activeButtonIndex = 3;
+                });
+              },
+            ),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              CircularToggleButton(
+              text: 'Sleeping Mode',
+              index: 0,
+              isActive: activeButtonIndex == 4,
+              onPressed: () {
+                setState(() {
+                  activeButtonIndex = 4;
+                });
+              },
+            ),
+            CircularToggleButton(
+              text: 'Cinema Mode',
+              index: 0,
+              isActive: activeButtonIndex == 5,
+              onPressed: () {
+                setState(() {
+                  activeButtonIndex = 5;
+                });
+              },
+            ),
+            SizedBox(height: 20,),
+              ],  
             ),
           ],
         ),),
