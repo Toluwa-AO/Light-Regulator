@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:light_regulator_app/components/toggle.dart';
 
 class BedroomPage extends StatelessWidget {
   const BedroomPage({super.key});
@@ -53,118 +54,7 @@ class BedroomPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),
-                                
-                                 ),
-                 ),
-              GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                               
-                                 ),
-                 ),
-              ],
-            ),
-            SizedBox(height: 20,),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                                
-                                 ),
-                 ), 
-                GestureDetector(
-                  onTap: (){
-                  },
-                   child: Container(
-                    width: 359/2,
-                    height:120,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                               
-                                 ),
-                 ),
-              ],
-            ),
-            SizedBox(height: 20,),
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),
-                                
-                                 ),
-                 ),
-              GestureDetector(
-                   child: Container(
-                    width: 359/2,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                                   ),
-                                   ],
-                                 ),                               
-                                 ),
-                 ),
+                ToggleGridPage(),
               ],
             ),
           ],
