@@ -22,7 +22,7 @@ class _BluetoothState extends State<Bluetooth> {
     flutterBlue.scanResults.listen((results){
       for(ScanResult result in results){
         print("Found device: ${result.device.name}");
-        if(result.device.name == ''){
+        if(result.device.name == 'Small_T'){
           connectToDevicce(result.device);
           break;
         }
