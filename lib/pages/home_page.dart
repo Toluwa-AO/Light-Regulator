@@ -15,10 +15,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar (backgroundColor: Colors.transparent,),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body:SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.fromLTRB(8, 10, 8, 0),
+          padding: const EdgeInsets.fromLTRB(8, 10, 8, 0),
           width: MediaQuery.of(context).size.width,
           child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                             child: Container(
                                 width: 359,
                                 height: 259,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   image: DecorationImage(
                                    image:  AssetImage('assets/home.png'),
                                   fit: BoxFit.cover,
@@ -88,8 +88,8 @@ class HomePage extends StatelessWidget {
         ],
     ),
 ),
-            SizedBox(height: 30,),
-             Row(
+            const SizedBox(height: 30,),
+             const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text('Select Room', style: TextStyle(
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                 ),),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -107,12 +107,12 @@ class HomePage extends StatelessWidget {
               children: [
                  GestureDetector(
                   onTap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=> BedroomPage()));
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const BedroomPage()));
                   },
                    child: Container(
                     width: 359/2,
                     height: 259/1.5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image:  AssetImage('assets/bedroom.png'),
                        fit: BoxFit.cover,
@@ -141,12 +141,12 @@ class HomePage extends StatelessWidget {
                  ),
               GestureDetector(
                   onTap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=> BathroomPage()));
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const BathroomPage()));
                   },
                    child: Container(
                     width: 359/2,
                     height: 259/1.5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image:  AssetImage('assets/bathroom.png'),
                         fit: BoxFit.cover,
@@ -175,7 +175,7 @@ class HomePage extends StatelessWidget {
                  ),
               ],
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
               Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -186,7 +186,7 @@ class HomePage extends StatelessWidget {
                    child: Container(
                     width: 359/2,
                     height: 259/1.5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                        image: DecorationImage(
                         image:  AssetImage('assets/laundry.png'),
                         fit: BoxFit.cover,),
@@ -214,7 +214,7 @@ class HomePage extends StatelessWidget {
                  ), 
                 GestureDetector(
                   onTap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=> StudyPage()));
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const StudyPage()));
                   },
                    child: Container(
                     width: 359/2,
