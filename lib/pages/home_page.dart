@@ -141,7 +141,7 @@ class HomePage extends StatelessWidget {
                  ),
               GestureDetector(
                   onTap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=> BathroomRoomPage()));
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> BathroomPage()));
                   },
                    child: Container(
                     width: 359/2,
