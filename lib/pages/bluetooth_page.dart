@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import 'package:light_regulator_app/bluetooth_service.dart';
-
+import 'package:flutter_blue/flutter_blue.dart';
 
 class BluetoothPage extends StatefulWidget {
   const BluetoothPage({Key? key}) : super(key: key);
@@ -51,7 +50,11 @@ class _BluetoothPageState extends State<BluetoothPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bluetooth Connection'),
+      ),
+      body: Center(
         child: _bluetoothService.isScanning
             ? CircularProgressIndicator()
             : _bluetoothService.isConnected
@@ -77,7 +80,8 @@ class _BluetoothPageState extends State<BluetoothPage> {
                       ),
                     ],
                   ),
-      );
+      ),
+    );
   }
 }
 
@@ -86,5 +90,3 @@ void main() {
     home: BluetoothPage(),
   ));
 }
-
-
