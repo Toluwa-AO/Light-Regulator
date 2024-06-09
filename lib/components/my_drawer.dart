@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:light_regulator_app/pages/settings_Page.dart';
+import 'package:light_regulator_app/pages/bluetooth_page.dart';
+
 import 'package:light_regulator_app/services/auth/auth_service.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -48,7 +49,7 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pop(context);
 
                 //navigate to settings page
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingsPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const BluetoothPage()));
               },
             ),
           ),],),
