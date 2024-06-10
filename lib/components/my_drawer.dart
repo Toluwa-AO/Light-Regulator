@@ -49,7 +49,7 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pop(context);
 
                 //navigate to settings page
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const BluetoothPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> BluetoothPage()));
               },
             ),
           ),],),

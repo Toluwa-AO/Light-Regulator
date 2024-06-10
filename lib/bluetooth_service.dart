@@ -13,11 +13,7 @@ class BluetoothServices {
 
     flutterBlue.scanResults.listen((results) {
       for (ScanResult result in results) {
-        if (result.device.name == 'Small_T') {
-          onDeviceFound(result.device);
-          flutterBlue.stopScan(); // Stop scanning once the device is found
-          break;
-        }
+        onDeviceFound(result.device);
       }
     });
 
@@ -38,7 +34,6 @@ class BluetoothServices {
       });
     } catch (e) {
       print('Failed to connect to ${device.name}: $e');
-      isConnected = false;
     }
   }
 
