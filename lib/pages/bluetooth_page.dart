@@ -1,38 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
-import 'package:light_regulator_app/bluetooth_service.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
-
-class BluetoothPage extends StatefulWidget {
-  @override
-  _BluetoothPageState createState() => _BluetoothPageState();
+void main() {
+  runApp(MyApp());
 }
 
-class _BluetoothPageState extends State<BluetoothPage> {
-  final BluetoothServices _bluetoothServices = BluetoothServices();
-  List<BluetoothDevice> _devicesList = [];
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: BluetoothDevicesPage(),
+    );
+  }
+}
+
+class BluetoothDevicesPage extends StatefulWidget {
+  @override
+  _BluetoothDevicesPageState createState() => _BluetoothDevicesPageState();
+}
+
+class _BluetoothDevicesPageState extends State<BluetoothDevicesPage> {
+  final BluetoothService _bluetoothService = BluetoothService();
 
   @override
   void initState() {
     super.initState();
-    _startScan();
-  }
-
-  void _startScan() {
-    _bluetoothServices.startScan((device) {
-      setState(() {
-        if (!_devicesList.contains(device)) {
-          _devicesList.add(device);
-        }
-      });
-    });
-  }
-
-  void _connectToDevice(BluetoothDevice device) async {
-    await _bluetoothServices.connectToDevice(device);
-    setState(() {
-      _devicesList.clear();
-    });
+    _bluetoothService.startScan();
   }
 
   @override
@@ -41,20 +34,50 @@ class _BluetoothPageState extends State<BluetoothPage> {
       appBar: AppBar(
         title: Text('Bluetooth Devices'),
       ),
-      body: _buildDeviceList(),
+      body: StreamBuilder<List<ScanResult>>(
+        stream: _bluetoothService.scanResults,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          List<ScanResult>? devices = snapshot.data;
+          return ListView.builder(
+            itemCount: devices?.length ?? 0,
+            itemBuilder: (context, index) {
+              BluetoothDevice device = devices![index].device;
+              return ListTile(
+                title: Text(device.name),
+                onTap: () {
+                  _bluetoothService.connectToDevice(device);
+                },
+              );
+            },
+          );
+        },
+      ),
     );
   }
+}
 
-  Widget _buildDeviceList() {
-    return ListView.builder(
-      itemCount: _devicesList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(_devicesList[index].name),
-          subtitle: Text(_devicesList[index].id.toString()),
-          onTap: () => _connectToDevice(_devicesList[index]),
-        );
-      },
-    );
+class BluetoothService {
+
+  Stream<List<ScanResult>> get scanResults => FlutterBluePlus.scanResults;
+
+  Future<void> startScan() async {
+    await FlutterBluePlus.startScan(timeout: Duration(seconds: 5));
+  }
+
+  Future<void> connectToDevice(BluetoothDevice device) async {
+    try {
+      await device.connect();
+      print('Connected to device: ${device.name}');
+    } catch (e) {
+      print('Failed to connect to device: $e');
+    }
   }
 }
