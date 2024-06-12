@@ -41,7 +41,6 @@ dependencies:
   flutter_blue_plus: ^1.32.7
   shared_preferences: ^2.0.8
   permission_handler: ^10.2.0
-  bluetooth_plus: ^0.0.1
   get: ^4.6.5
 
 dev_dependencies:

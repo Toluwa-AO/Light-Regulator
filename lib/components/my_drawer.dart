@@ -42,8 +42,8 @@ class MyDrawer extends StatelessWidget {
             Padding(
             padding: const EdgeInsets.only(left:25),
             child: ListTile(
-              title: const Text("S E T T I N G S"),
-              leading: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.primary,),
+              title: const Text("C O N N E C T"),
+              leading: Icon(Icons.bluetooth, color: Theme.of(context).colorScheme.primary,),
               onTap: (){
                 //pop the drawer
                 Navigator.pop(context);
@@ -53,14 +53,14 @@ class MyDrawer extends StatelessWidget {
               },
             ),
           ),],),
-           Padding(
-            padding: const EdgeInsets.only(left:25, bottom: 25),
-            child: ListTile(
-              title:const Text("L O G O U T"),
-              leading: Icon(Icons.logout_sharp,  color: Theme.of(context).colorScheme.primary),
-              onTap: logout,
-            ),
-          )
+          // Padding(
+          //padding: const EdgeInsets.only(left:25, bottom: 25),
+           // child: ListTile(
+             // title:const Text("L O G O U T"),
+              //leading: Icon(Icons.logout_sharp,  color: Theme.of(context).colorScheme.primary),
+              //onTap: logout,
+            //),
+         // )
         ],
       ),
     );
