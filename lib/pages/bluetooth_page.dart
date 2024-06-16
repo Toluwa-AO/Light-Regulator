@@ -26,27 +26,16 @@ class _BluetoothDevicesPageState extends State<BluetoothDevicesPage> {
   @override
   void initState() {
     super.initState();
-    _checkPermissionsAndStartScan();
+    _requestPermissions(); // Request permissions when the page is initialized
   }
 
-  Future<void> _checkPermissionsAndStartScan() async {
-    if (await _checkPermissions()) {
+  Future<void> _requestPermissions() async {
+    final status = await Permission.bluetoothScan.request();
+    if (status.isGranted) {
       _bluetoothService.startScan();
     } else {
       print('Permissions not granted');
     }
-  }
-
-  Future<bool> _checkPermissions() async {
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.bluetooth,
-      Permission.bluetoothScan,
-      Permission.bluetoothConnect,
-      Permission.location,
-    ].request();
-
-    bool allGranted = statuses.values.every((status) => status.isGranted);
-    return allGranted;
   }
 
   @override
@@ -72,8 +61,7 @@ class _BluetoothDevicesPageState extends State<BluetoothDevicesPage> {
             itemBuilder: (context, index) {
               BluetoothDevice device = devices![index].device;
               return ListTile(
-                title: Text(device.name.isNotEmpty ? device.name : 'Unknown device'),
-                subtitle: Text(device.id.toString()),
+                title: Text(device.name.isNotEmpty ? device.name : 'Unknown Device'),
                 onTap: () {
                   _bluetoothService.connectToDevice(device);
                 },
@@ -87,36 +75,23 @@ class _BluetoothDevicesPageState extends State<BluetoothDevicesPage> {
 }
 
 class BluetoothService {
-  BluetoothDevice? _connectedDevice;
 
   Stream<List<ScanResult>> get scanResults => FlutterBluePlus.scanResults;
 
   Future<void> startScan() async {
-    try {
-      await FlutterBluePlus.startScan(timeout: Duration(seconds: 30));
-      print('Scanning started');
-    } catch (e) {
-      print('Failed to start scan: $e');
-    }
+    await FlutterBluePlus.startScan(timeout: Duration(seconds: 5));
   }
 
   Future<void> connectToDevice(BluetoothDevice device) async {
     try {
       await device.connect();
-      _connectedDevice = device;
       print('Connected to device: ${device.name}');
     } catch (e) {
       print('Failed to connect to device: $e');
     }
   }
 
-  void disconnectDevice() {
-    if (_connectedDevice != null) {
-      _connectedDevice!.disconnect();
-      _connectedDevice = null;
-      print('Disconnected from device');
-    }
+  void stopScan() {
+    FlutterBluePlus.stopScan();
   }
 }
-
-

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:light_regulator_app/pages/bluetooth_page.dart';
+import 'package:light_regulator_app/pages/wifi_page.dart';
 
 import 'package:light_regulator_app/services/auth/auth_service.dart';
 
@@ -43,13 +44,13 @@ class MyDrawer extends StatelessWidget {
             padding: const EdgeInsets.only(left:25),
             child: ListTile(
               title: const Text("C O N N E C T"),
-              leading: Icon(Icons.bluetooth, color: Theme.of(context).colorScheme.primary,),
+              leading: Icon(Icons.wifi, color: Theme.of(context).colorScheme.primary,),
               onTap: (){
                 //pop the drawer
                 Navigator.pop(context);
 
                 //navigate to settings page
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> BluetoothDevicesPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> WiFiConnectPage()));
               },
             ),
           ),],),
