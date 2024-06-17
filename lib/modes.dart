@@ -2,11 +2,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ModeService {
-  final String esp32IP = "192.168.137.253"; // Replace with your ESP32 IP address
+  final String esp32IP = "192.168.137.246"; // Replace with your ESP32 IP address
   Map<String, String> currentModes = {
     "bedroom": "off",
-    "living_room": "off",
-    "kitchen": "off",
+    "study": "off",
+    "laundry": "off",
     "bathroom": "off"
   };
 
